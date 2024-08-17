@@ -1,0 +1,19 @@
+{
+  "name": "FOI bulk download plugin",
+  "description": "The extension enables user to bulk download the links on FOI page.",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ods.foi.org.tw/"],
+      "js": ["content.js"]
+    }
+  ]
+}
