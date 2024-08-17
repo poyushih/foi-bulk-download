@@ -63,7 +63,7 @@ async function downloadZippedFiles(files: TargetFile[]) {
   async function addFileToZip(file: TargetFile) {
     const response = await fetch(file.url);
     const blob = await response.blob();
-    return zip.file(file.title, blob);
+    return zip.file(file.title + '.pdf', blob);
   }
 
   try {
@@ -71,7 +71,7 @@ async function downloadZippedFiles(files: TargetFile[]) {
     const content = await zip.generateAsync({ type: 'blob' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(content);
-    a.download = `${formattedDate}.zip`;
+    a.download = `${formattedDate()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
